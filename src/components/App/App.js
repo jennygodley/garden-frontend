@@ -8,6 +8,9 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import GardenPlot from '../GardenPlots/GardenPlot'
+import GardenPlots from '../GardenPlots/GardenPlots'
+import CreateGardenPlot from '../GardenPlots/CreateGardenPlot'
 
 class App extends Component {
   constructor () {
@@ -53,6 +56,15 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/garden-plots/:id' render={() => (
+            <GardenPlot alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/garden-plots' render={() => (
+            <GardenPlots alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/garden-plots-create' render={() => (
+            <CreateGardenPlot alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>
