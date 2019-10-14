@@ -83,6 +83,7 @@ class SignUp extends Component {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
                 name="passwordConfirmation"
                 value={passwordConfirmation}
                 type="password"
