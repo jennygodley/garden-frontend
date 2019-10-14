@@ -1,17 +1,26 @@
-import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import GardenPlotForm from './GardenPlotForm'
-// import messages from '../AutoDismissAlert/messages'
 
-const CreateGardenPlot = ({ user, alert }) => {
+const UpdateGardenPlot = ({ user, alert, match, history }) => {
   const [gardenPlot, setGardenPlot] = useState({ name: '' })
-  const [createdGardenPlotId, setCreatedGardenPlotId] = useState(null)
+
+  useEffect(() => {
+    axios({
+      method: 'GET',
+      url: `${apiUrl}/gardenPlots/${match.params.id}`,
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
+    })
+      .then(res => setGardenPlot(res.data.gardenPlot))
+      .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
+  }, [])
 
   const handleChange = (event) => {
     event.persist()
-
     setGardenPlot(gardenPlot => ({ ...gardenPlot, [event.target.name]: event.target.value }))
   }
 
@@ -19,23 +28,20 @@ const CreateGardenPlot = ({ user, alert }) => {
     event.preventDefault()
 
     axios({
-      method: 'POST',
-      url: `${apiUrl}/gardenPlots`,
+      method: 'PATCH',
+      url: `${apiUrl}/gardenPlots/${match.params.id}`,
       data: { gardenPlot },
       headers: {
         'Authorization': `Token token=${user.token}`
       }
     })
-      .then(res => setCreatedGardenPlotId(res.data.gardenPlot._id))
       .then(() => alert({
         heading: 'success',
+        message: 'you updated your garden plot',
         variant: 'success'
       }))
+      .then(() => history.push(`/garden-plots/${match.params.id}`))
       .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
-  }
-
-  if (createdGardenPlotId) {
-    return <Redirect to={`/garden-plots/${createdGardenPlotId}`} />
   }
 
   return (
@@ -49,4 +55,4 @@ const CreateGardenPlot = ({ user, alert }) => {
   )
 }
 
-export default CreateGardenPlot
+export default withRouter(UpdateGardenPlot)

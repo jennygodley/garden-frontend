@@ -16,9 +16,8 @@ const GardenPlot = ({ user, alerts, match }) => {
         'Authorization': `Token token=${user.token}`
       }
     })
-      // .then(console.log)
       .then(res => setGardenPlot(res.data.gardenPlot))
-      .catch(console.error)
+      .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
   }, [])
 
   if (!gardenPlot) {
@@ -28,16 +27,15 @@ const GardenPlot = ({ user, alerts, match }) => {
   } else {
     return (
       <div>
-        {console.log('hi')}
         <h2>{gardenPlot.name}</h2>
-        <Link to={`/gardenPlots/${match.params.id}/update`}>
+        <Link to={`/garden-plots/${match.params.id}/update`}>
           <Button variant="warning">Edit</Button>
         </Link>
-        <Link to={`/gardenPlots/${match.params.id}/delete`}>
+        <Link to={`/garden-plots/${match.params.id}/delete`}>
           <Button className="ml-2" variant="warning">Delete</Button>
         </Link>
         <br />
-        <Link to={'/'}>back</Link>
+        <Link to={'/garden-plots/'}>back</Link>
       </div>
 
     )

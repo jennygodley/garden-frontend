@@ -15,12 +15,12 @@ const GardenPlots = ({ user, alerts }) => {
       }
     })
       .then(res => setGardenPlots(res.data.gardenPlots))
-      .catch(console.error)
+      .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
   }, [])
 
   const gardenPlotsJsx = gardenPlots.map(gardenPlot => (
     <li key={gardenPlot._id}>
-      <Link to={`/gardenPlots/${gardenPlot._id}`}>{gardenPlot.name}</Link>
+      <Link to={`/garden-plots/${gardenPlot._id}`}>{gardenPlot.name}</Link>
     </li>
   ))
 

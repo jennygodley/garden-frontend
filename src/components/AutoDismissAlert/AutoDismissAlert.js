@@ -15,7 +15,7 @@ class AutoDismissAlert extends React.Component {
   componentDidMount () {
     this.timer = setInterval(() => {
       this.setState({ show: false })
-    }, 3000000)
+    }, 3000)
   }
 
   componentWillUnmount () {

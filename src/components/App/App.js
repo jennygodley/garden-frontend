@@ -11,6 +11,8 @@ import ChangePassword from '../ChangePassword/ChangePassword'
 import GardenPlot from '../GardenPlots/GardenPlot'
 import GardenPlots from '../GardenPlots/GardenPlots'
 import CreateGardenPlot from '../GardenPlots/CreateGardenPlot'
+import DeleteGardenPlot from '../GardenPlots/DeleteGardenPlot'
+import UpdateGardenPlot from '../GardenPlots/UpdateGardenPlot'
 
 class App extends Component {
   constructor () {
@@ -57,14 +59,20 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} exact path='/garden-plots/:id' render={() => (
-            <GardenPlot alert={this.alert} user={user} />
-          )} />
           <AuthenticatedRoute user={user} exact path='/garden-plots' render={() => (
             <GardenPlots alert={this.alert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/garden-plots-create' render={() => (
+          <AuthenticatedRoute user={user} exact path='/garden-plots/:id' render={() => (
+            <GardenPlot alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/garden-plots-create' render={() => (
             <CreateGardenPlot alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/garden-plots/:id/delete' render={() => (
+            <DeleteGardenPlot alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/garden-plots/:id/update' render={() => (
+            <UpdateGardenPlot alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>
