@@ -56,6 +56,7 @@ class ChangePassword extends Component {
               <Form.Label>Old password</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
                 name="oldPassword"
                 value={oldPassword}
                 type="password"
@@ -67,6 +68,7 @@ class ChangePassword extends Component {
               <Form.Label>New Password</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
                 name="newPassword"
                 value={newPassword}
                 type="password"

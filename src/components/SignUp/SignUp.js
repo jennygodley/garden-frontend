@@ -59,6 +59,7 @@ class SignUp extends Component {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
                 type="text"
                 name="email"
                 value={email}
@@ -70,6 +71,7 @@ class SignUp extends Component {
               <Form.Label>Password</Form.Label>
               <Form.Control
                 required
+                autoComplete="off"
                 name="password"
                 value={password}
                 type="password"
