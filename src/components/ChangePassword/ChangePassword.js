@@ -28,7 +28,7 @@ class ChangePassword extends Component {
 
     changePassword(this.state, user)
       .then(() => alert({
-        heading: 'Change Password Success',
+        heading: 'changed password',
         message: messages.changePasswordSuccess,
         variant: 'success'
       }))
@@ -37,7 +37,7 @@ class ChangePassword extends Component {
         console.error(error)
         this.setState({ oldPassword: '', newPassword: '' })
         alert({
-          heading: 'Change Password Failed',
+          heading: 'password change failed',
           message: messages.changePasswordFailure,
           variant: 'danger'
         })

@@ -1,18 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Source+Sans+Pro&display=swap');
+
+
+.h4 {
+  font-size: 16px;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.close {
+  padding: 1rem;
+}
+
 .alert {
-  align-items: center;
+  align-items: right;
   animation: .5s ease-in-out 0s 1 light-bounce-in;
   bottom: 1rem;
   display: flex;
-  left: 0;
+  left: 60%;
   margin: auto;
+  margin-left: 15px;
+  // padding-right: 1rem;
   max-width: 30rem;
+  right: 1rem;
   position: fixed;
-  right: 0;
+  font-size: 14px;
 
   .alert-body {
     margin-bottom: 0;
   }
 }
+
 
 .close {
   &:active,

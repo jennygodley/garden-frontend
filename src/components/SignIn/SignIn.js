@@ -29,7 +29,7 @@ class SignIn extends Component {
     signIn(this.state)
       .then(res => setUser(res.data.user))
       .then(() => alert({
-        heading: 'Sign In Success',
+        heading: 'signed in',
         message: messages.signInSuccess,
         variant: 'success'
       }))
@@ -38,7 +38,7 @@ class SignIn extends Component {
         console.error(error)
         this.setState({ email: '', password: '' })
         alert({
-          heading: 'Sign In Failed',
+          heading: 'sign in failed',
           message: messages.signInFailure,
           variant: 'danger'
         })
@@ -57,7 +57,7 @@ class SignIn extends Component {
               <Form.Label>Email address</Form.Label>
               <Form.Control
                 required
-                type="email"
+                type="text"
                 name="email"
                 value={email}
                 placeholder="Enter email"

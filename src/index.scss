@@ -1,1 +1,27 @@
+$theme-colors: (
+  "primary": #24d61e,
+  "danger": #ff4136
+);
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Source+Sans+Pro&display=swap');
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #438c41;
+}
+
+Navbar {
+  color: #fafaed;
+}
+
+.form-control {
+  color: #438c41;
+}
+
+// ::placeholder {
+//   color: #24d61e;
+// }
+
+.title {
+  font-family: 'Comfortaa', sans-serif;
+}

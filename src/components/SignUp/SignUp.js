@@ -31,7 +31,7 @@ class SignUp extends Component {
       .then(() => signIn(this.state))
       .then(res => setUser(res.data.user))
       .then(() => alert({
-        heading: 'Sign Up Success',
+        heading: 'signed in',
         message: messages.signUpSuccess,
         variant: 'success'
       }))
@@ -40,7 +40,7 @@ class SignUp extends Component {
         console.error(error)
         this.setState({ email: '', password: '', passwordConfirmation: '' })
         alert({
-          heading: 'Sign Up Failed',
+          heading: 'sign up failed',
           message: messages.signUpFailure,
           variant: 'danger'
         })
@@ -56,13 +56,13 @@ class SignUp extends Component {
           <h3>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 required
-                type="email"
+                type="text"
                 name="email"
                 value={email}
-                placeholder="Enter email"
+                placeholder="Enter username"
                 onChange={this.handleChange}
               />
             </Form.Group>
