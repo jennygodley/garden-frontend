@@ -28,6 +28,12 @@ const GardenPlot = ({ user, alerts, match }) => {
     return (
       <div>
         <h2>{gardenPlot.name}</h2>
+        {gardenPlot.plant.map(plant =>
+          <h6 key={plant._id}>{plant.plantName}</h6>
+        )}
+        <h2>{gardenPlot.plant.plantName}</h2>
+        <Link to={`/plants/${match.params.id}`}>add plants</ Link>
+        <br />
         <Link to={`/garden-plots/${match.params.id}/update`}>
           <Button variant="warning">Edit</Button>
         </Link>

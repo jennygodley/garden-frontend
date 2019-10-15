@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const GardenPlotForm = ({ gardenPlot, handleChange, handleSubmit }) => {
-  const cancelPath = gardenPlot._id ? `#/gardenPlots/${gardenPlot._id}` : '#gardenPlots'
+  const cancelPath = gardenPlot._id ? `#/garden-plots/${gardenPlot._id}` : '#gardenPlots'
 
   return (
     <Form onSubmit={handleSubmit}>

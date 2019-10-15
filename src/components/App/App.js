@@ -13,6 +13,7 @@ import GardenPlots from '../GardenPlots/GardenPlots'
 import CreateGardenPlot from '../GardenPlots/CreateGardenPlot'
 import DeleteGardenPlot from '../GardenPlots/DeleteGardenPlot'
 import UpdateGardenPlot from '../GardenPlots/UpdateGardenPlot'
+import Plant from '../Plants/Plants'
 
 class App extends Component {
   constructor () {
@@ -73,6 +74,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/garden-plots/:id/update' render={() => (
             <UpdateGardenPlot alert={this.alert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/plants/:id' render={() => (
+            <Plant alert={this.alert} user={user} />
           )} />
         </main>
       </Fragment>
