@@ -1,13 +1,26 @@
 $theme-colors: (
   "primary": #24d61e,
-  "danger": #ff4136
+  "danger": #e34d5c,
+  "success": #24d61e,
+  "warning": #cde34d
 );
+
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css?family=Comfortaa|Source+Sans+Pro&display=swap');
 
+$white: #fff;
+$green: #79b758;
+$orange: #f58742;
+$yellow: #cde34d;
+$red: #e34d5c;
+
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  color: #438c41;
+  color: $green;
+}
+
+a {
+  color: $orange;
 }
 
 Navbar {
@@ -15,12 +28,8 @@ Navbar {
 }
 
 .form-control {
-  color: #438c41;
+  color: $green;
 }
-
-// ::placeholder {
-//   color: #24d61e;
-// }
 
 .title {
   font-family: 'Comfortaa', sans-serif;
