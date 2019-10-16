@@ -26,7 +26,12 @@ const GardenPlots = ({ user, alerts }) => {
 
   if (gardenPlots.length === 0) {
     return (
-      <p>please add a garden</p>
+      <React.Fragment>
+        <br />
+        <br />
+        <br />
+        <p>To get started, please <Link to={'/garden-plots-create/'}>add a garden plot</Link>.</p>
+      </React.Fragment>
     )
   } else {
     return (

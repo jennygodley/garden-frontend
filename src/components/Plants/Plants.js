@@ -36,25 +36,16 @@ const Plants = ({ user, alert, match, history }) => {
       .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
   }, [])
 
-  // const syncPlants = function (chosenPlants, currentGardenPlants) {
-  //   for (let i = 0; i < chosenPlants.length; i++) {
-  //       if (currentGardenPlants._id === chosenPlants[i]._id) {
-  //         chosenPlants[i].startIndoors = 'TRUE'
-  //       }
-  //     }
-  //   }
-  // }
-
   const handleChange = (event) => {
     event.persist()
-    // iterates through plants to set startIndoors to true/false when box is
+    // iterates through plants to set checked to true/false when box is
     // checked/unchecked by the user
     for (let i = 0; i < plants.length; i++) {
       if (event.target.id === plants[i]._id) {
-        if (plants[i].startIndoors === 'TRUE') {
-          plants[i].startIndoors = 'FALSE'
+        if (plants[i].checked === 'TRUE') {
+          plants[i].checked = 'FALSE'
         } else {
-          plants[i].startIndoors = 'TRUE'
+          plants[i].checked = 'TRUE'
         }
       }
     }
@@ -66,8 +57,7 @@ const Plants = ({ user, alert, match, history }) => {
     // creates an array of IDs of plants marked 'TRUE' to pass to axios
     function isTrue (plants) {
       for (let i = 0; i < plants.length; i++) {
-        console.log(plants[i].start)
-        if (plants[i].startIndoors === 'TRUE') {
+        if (plants[i].checked === 'TRUE') {
           plant.push(plants[i]._id)
         }
       }
@@ -101,7 +91,6 @@ const Plants = ({ user, alert, match, history }) => {
             <th>add</th>
             <th>name</th>
             <th>when to plant</th>
-            <th>in bloom</th>
             <th>perennial</th>
           </tr>
         </thead>
@@ -109,14 +98,13 @@ const Plants = ({ user, alert, match, history }) => {
           {plants.map(plant =>
             <tr key={plant._id}>
               <td>
-                {plants.startIndoors === 'FALSE'
+                {plants.checked === 'FALSE'
                   ? <Form.Check onChange={handleChange} checked type="checkbox" id={plant._id} />
                   : <Form.Check onChange={handleChange} type="checkbox" id={plant._id} />
                 }
               </td>
               <td>{plant.plantName}</td>
               <td>{plant.whenToPlant}</td>
-              <td>{plant.inBloomStart}</td>
               <td>{plant.perennial}</td>
             </tr>
           )}

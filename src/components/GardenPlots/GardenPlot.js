@@ -26,7 +26,7 @@ const GardenPlot = ({ user, alerts, match }) => {
 
   if (!gardenPlot) {
     return (
-      <p>hello</p>
+      <p>Something has gone wrong, please try again.</p>
     )
   } else {
     return (
@@ -36,8 +36,8 @@ const GardenPlot = ({ user, alerts, match }) => {
         <Fragment>
           <CardDeck className="mb-4">
             <Card>
+              <Card.Header>March</Card.Header>
               <Card.Body>
-                <Card.Title>March</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.march
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -46,8 +46,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>April</Card.Header>
               <Card.Body>
-                <Card.Title>April</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.april
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -56,8 +56,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>May</Card.Header>
               <Card.Body>
-                <Card.Title>May</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.may
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -69,8 +69,8 @@ const GardenPlot = ({ user, alerts, match }) => {
 
           <CardDeck className="mb-4">
             <Card>
+              <Card.Header>June</Card.Header>
               <Card.Body>
-                <Card.Title>June</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.june
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -79,8 +79,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>July</Card.Header>
               <Card.Body>
-                <Card.Title>July</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.july
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -89,8 +89,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>August</Card.Header>
               <Card.Body>
-                <Card.Title>August</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.aug
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -102,8 +102,8 @@ const GardenPlot = ({ user, alerts, match }) => {
 
           <CardDeck className="mb-4">
             <Card>
+              <Card.Header>September</Card.Header>
               <Card.Body>
-                <Card.Title>September</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.sept
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -112,8 +112,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>October</Card.Header>
               <Card.Body>
-                <Card.Title>October</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.oct
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -122,8 +122,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>November</Card.Header>
               <Card.Body>
-                <Card.Title>November</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.nov
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -135,8 +135,8 @@ const GardenPlot = ({ user, alerts, match }) => {
 
           <CardDeck className="mb-4">
             <Card>
+              <Card.Header>December</Card.Header>
               <Card.Body>
-                <Card.Title>December</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.dec
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -145,8 +145,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card height={150}>
+              <Card.Header>January</Card.Header>
               <Card.Body>
-                <Card.Title>January</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.jan
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
@@ -155,8 +155,8 @@ const GardenPlot = ({ user, alerts, match }) => {
               </Card.Body>
             </Card>
             <Card>
+              <Card.Header>February</Card.Header>
               <Card.Body>
-                <Card.Title>February</Card.Title>
                 {gardenPlot.plant.map(plant =>
                   plant.feb
                     ? <OverlayTrigger key={plant._id} overlay={<Tooltip key={plant._id} id={`${plant._id}tooltip`}>{plant.plantName}</Tooltip>}><span className="flower" key={plant._id}> ❀ </span></OverlayTrigger>
