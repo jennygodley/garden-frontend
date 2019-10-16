@@ -10,8 +10,9 @@ import Button from 'react-bootstrap/Button'
 
 const Plants = ({ user, alert, match, history }) => {
   const [plants, setPlants] = useState([])
-  const [chosenPlants, setChosenPlants] = useState([])
-  const [updatedPlants, setUpdatedPlants] = useState([])
+  // const [chosenPlants, setChosenPlants] = useState([...plants])
+  const [setCurrentGardenPlants] = useState([])
+  // const [updatedPlants, setUpdatedPlants] = useState([])
 
   useEffect(() => {
     axios({
@@ -31,43 +32,53 @@ const Plants = ({ user, alert, match, history }) => {
         'Authorization': `Token token=${user.token}`
       }
     })
-      // .then(res => console.log(res.data.gardenPlot.plant))
-      .then(res => setChosenPlants(res.data.gardenPlot.plant))
-      .then(setChosenPlants(chosenPlants.map(item => item._id)))
+      .then(res => setCurrentGardenPlants(res.data.gardenPlot.plant))
       .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
   }, [])
 
-  // const plant = []
-
-  // const alreadyChosenPlantsIdArray = alreadyChosenPlants.map(item => item._id)
-
-  // setChosenPlants(chosenPlants.map(item => item._id))
+  // const syncPlants = function (chosenPlants, currentGardenPlants) {
+  //   for (let i = 0; i < chosenPlants.length; i++) {
+  //       if (currentGardenPlants._id === chosenPlants[i]._id) {
+  //         chosenPlants[i].startIndoors = 'TRUE'
+  //       }
+  //     }
+  //   }
+  // }
 
   const handleChange = (event) => {
     event.persist()
-    const id = event.target.id
-    // console.log('test:', ([...chosenPlants, id]))
-    // plant.push(id)
-    setChosenPlants([...chosenPlants, id])
-    const newPlantArray = function (chosenPlants) {
-      const array = []
-      for (let i = 0; i < chosenPlants.length; i++) {
-        (chosenPlants[i]._id ? array.push(chosenPlants[i]._id) : array.push(chosenPlants[i]))
+    // iterates through plants to set startIndoors to true/false when box is
+    // checked/unchecked by the user
+    for (let i = 0; i < plants.length; i++) {
+      if (event.target.id === plants[i]._id) {
+        if (plants[i].startIndoors === 'TRUE') {
+          plants[i].startIndoors = 'FALSE'
+        } else {
+          plants[i].startIndoors = 'TRUE'
+        }
       }
-      return array
     }
-
-    setUpdatedPlants(newPlantArray(chosenPlants))
   }
 
   const handleSubmit = event => {
     event.preventDefault()
+    const plant = []
+    // creates an array of IDs of plants marked 'TRUE' to pass to axios
+    function isTrue (plants) {
+      for (let i = 0; i < plants.length; i++) {
+        console.log(plants[i].start)
+        if (plants[i].startIndoors === 'TRUE') {
+          plant.push(plants[i]._id)
+        }
+      }
+    }
+    isTrue(plants)
 
     axios({
       method: 'PATCH',
       url: `${apiUrl}/gardenPlots/${match.params.id}`,
       data: {
-        gardenPlot: { updatedPlants }
+        gardenPlot: { plant }
       },
       headers: {
         'Authorization': `Token token=${user.token}`
@@ -98,7 +109,10 @@ const Plants = ({ user, alert, match, history }) => {
           {plants.map(plant =>
             <tr key={plant._id}>
               <td>
-                <Form.Check onChange={handleChange} type="checkbox" id={plant._id} />
+                {plants.startIndoors === 'FALSE'
+                  ? <Form.Check onChange={handleChange} checked type="checkbox" id={plant._id} />
+                  : <Form.Check onChange={handleChange} type="checkbox" id={plant._id} />
+                }
               </td>
               <td>{plant.plantName}</td>
               <td>{plant.whenToPlant}</td>

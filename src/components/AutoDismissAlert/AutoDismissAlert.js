@@ -28,6 +28,7 @@ class AutoDismissAlert extends React.Component {
     const { variant, heading, message } = this.props
     return (
       <Alert
+        style={{ zIndex: 1 }}
         dismissible
         show={this.state.show}
         variant={variant}

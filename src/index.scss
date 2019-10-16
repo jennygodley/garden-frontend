@@ -27,8 +27,17 @@ Table {
   color: $red;
 }
 
+Card {
+  margin: 10px;
+  min-height: 150px;
+}
+
 Navbar {
   color: #fafaed;
+}
+
+.flower {
+  font-size: 48px;
 }
 
 .form-control {
