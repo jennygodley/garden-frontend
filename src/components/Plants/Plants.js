@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+// import FormCheck from 'react-bootstrap/FormCheck'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { withRouter } from 'react-router-dom'
@@ -9,6 +10,8 @@ import Button from 'react-bootstrap/Button'
 
 const Plants = ({ user, alert, match, history }) => {
   const [plants, setPlants] = useState([])
+  const [chosenPlants, setChosenPlants] = useState([])
+  const [updatedPlants, setUpdatedPlants] = useState([])
 
   useEffect(() => {
     axios({
@@ -20,13 +23,41 @@ const Plants = ({ user, alert, match, history }) => {
     })
       .then(res => setPlants(res.data.plants))
       .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
+
+    axios({
+      method: 'GET',
+      url: `${apiUrl}/gardenPlots/${match.params.id}`,
+      headers: {
+        'Authorization': `Token token=${user.token}`
+      }
+    })
+      // .then(res => console.log(res.data.gardenPlot.plant))
+      .then(res => setChosenPlants(res.data.gardenPlot.plant))
+      .then(setChosenPlants(chosenPlants.map(item => item._id)))
+      .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
   }, [])
 
-  const plant = []
+  // const plant = []
+
+  // const alreadyChosenPlantsIdArray = alreadyChosenPlants.map(item => item._id)
+
+  // setChosenPlants(chosenPlants.map(item => item._id))
 
   const handleChange = (event) => {
     event.persist()
-    plant.push(event.target.id)
+    const id = event.target.id
+    // console.log('test:', ([...chosenPlants, id]))
+    // plant.push(id)
+    setChosenPlants([...chosenPlants, id])
+    const newPlantArray = function (chosenPlants) {
+      const array = []
+      for (let i = 0; i < chosenPlants.length; i++) {
+        (chosenPlants[i]._id ? array.push(chosenPlants[i]._id) : array.push(chosenPlants[i]))
+      }
+      return array
+    }
+
+    setUpdatedPlants(newPlantArray(chosenPlants))
   }
 
   const handleSubmit = event => {
@@ -36,7 +67,7 @@ const Plants = ({ user, alert, match, history }) => {
       method: 'PATCH',
       url: `${apiUrl}/gardenPlots/${match.params.id}`,
       data: {
-        gardenPlot: { plant }
+        gardenPlot: { updatedPlants }
       },
       headers: {
         'Authorization': `Token token=${user.token}`
@@ -66,7 +97,9 @@ const Plants = ({ user, alert, match, history }) => {
         <tbody>
           {plants.map(plant =>
             <tr key={plant._id}>
-              <td><Form.Check onChange={handleChange} type="checkbox"id={plant._id} /></td>
+              <td>
+                <Form.Check onChange={handleChange} type="checkbox" id={plant._id} />
+              </td>
               <td>{plant.plantName}</td>
               <td>{plant.whenToPlant}</td>
               <td>{plant.inBloomStart}</td>
