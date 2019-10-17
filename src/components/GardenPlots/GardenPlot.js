@@ -8,7 +8,6 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 
-// const GardenPlot = ({ user, alerts }) => {
 const GardenPlot = ({ user, alerts, match }) => {
   const [gardenPlot, setGardenPlot] = useState(null)
 

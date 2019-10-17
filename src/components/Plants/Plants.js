@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 // import FormCheck from 'react-bootstrap/FormCheck'
 // import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import apiUrl from '../../apiConfig'
 import Table from 'react-bootstrap/Table'
 import Form from 'react-bootstrap/Form'
@@ -11,7 +11,7 @@ import Button from 'react-bootstrap/Button'
 const Plants = ({ user, alert, match, history }) => {
   const [plants, setPlants] = useState([])
   // const [chosenPlants, setChosenPlants] = useState([...plants])
-  const [setCurrentGardenPlants] = useState([])
+  const [currentGardenPlants, setCurrentGardenPlants] = useState([])
   // const [updatedPlants, setUpdatedPlants] = useState([])
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const Plants = ({ user, alert, match, history }) => {
       }
     })
       .then(res => setPlants(res.data.plants))
-      .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
+      .catch(() => alert({ heading: 'get Plants', message: 'something went wrong', variant: 'danger' }))
 
     axios({
       method: 'GET',
@@ -33,22 +33,32 @@ const Plants = ({ user, alert, match, history }) => {
       }
     })
       .then(res => setCurrentGardenPlants(res.data.gardenPlot.plant))
-      .catch(() => alert({ heading: 'oh no', message: 'something went wrong', variant: 'danger' }))
+      .catch(() => alert({ heading: 'get gardenPlot', message: 'something went wrong', variant: 'danger' }))
   }, [])
+
+  useEffect(() => {
+    const trueGardenPlants = [...currentGardenPlants].map(plant => {
+      plant.checked = 'TRUE'
+      return plant
+    })
+
+    const combinedArray = plants.concat(trueGardenPlants)
+
+    const combinedTrueFalseArray = Object.values(combinedArray.reduce((acc, cur) => Object.assign(acc, { [cur._id]: cur }), {}))
+
+    setPlants(combinedTrueFalseArray)
+  }, [currentGardenPlants])
 
   const handleChange = (event) => {
     event.persist()
-    // iterates through plants to set checked to true/false when box is
-    // checked/unchecked by the user
-    for (let i = 0; i < plants.length; i++) {
-      if (event.target.id === plants[i]._id) {
-        if (plants[i].checked === 'TRUE') {
-          plants[i].checked = 'FALSE'
-        } else {
-          plants[i].checked = 'TRUE'
-        }
+    const targetId = event.target.id
+    const updatedPlants = [...plants].map(plant => {
+      if (plant._id === targetId) {
+        plant.checked = plant.checked === 'TRUE' ? 'FALSE' : 'TRUE'
       }
-    }
+      return plant
+    })
+    setPlants(updatedPlants)
   }
 
   const handleSubmit = event => {
@@ -95,13 +105,10 @@ const Plants = ({ user, alert, match, history }) => {
           </tr>
         </thead>
         <tbody>
-          {plants.map(plant =>
+          {plants && plants.map(plant =>
             <tr key={plant._id}>
               <td>
-                {plants.checked === 'FALSE'
-                  ? <Form.Check onChange={handleChange} checked type="checkbox" id={plant._id} />
-                  : <Form.Check onChange={handleChange} type="checkbox" id={plant._id} />
-                }
+                <Form.Check onChange={handleChange} checked={plant.checked === 'TRUE'} type="checkbox" id={plant._id} />
               </td>
               <td>{plant.plantName}</td>
               <td>{plant.whenToPlant}</td>
@@ -123,6 +130,7 @@ const Plants = ({ user, alert, match, history }) => {
       <div>
         <h1>Plants</h1>
         {plantsJsx}
+        <Link to={`/garden-plots/${match.params.id}`}>back</Link>
       </div>
 
     )
