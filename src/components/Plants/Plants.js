@@ -47,7 +47,7 @@ const Plants = ({ user, alert, match, history }) => {
     const combinedTrueFalseArray = Object.values(combinedArray.reduce((acc, cur) => Object.assign(acc, { [cur._id]: cur }), {}))
 
     setPlants(combinedTrueFalseArray)
-  }, [currentGardenPlants])
+  }, [currentGardenPlants], [plants])
 
   const handleChange = (event) => {
     event.persist()
@@ -112,7 +112,7 @@ const Plants = ({ user, alert, match, history }) => {
               </td>
               <td>{plant.plantName}</td>
               <td>{plant.whenToPlant}</td>
-              <td>{plant.perennial}</td>
+              <td>{plant.perennial === 'TRUE' ? '✓' : 'x'}</td>
             </tr>
           )}
         </tbody>
