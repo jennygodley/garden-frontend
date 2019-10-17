@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import CardDeck from 'react-bootstrap/CardDeck'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
@@ -25,12 +24,13 @@ const GardenPlot = ({ user, alerts, match }) => {
 
   if (!gardenPlot) {
     return (
-      <p>Something has gone wrong, please try again.</p>
+      <p>loading...</p>
     )
   } else {
     return (
       <div>
         <h2>{gardenPlot.name}</h2>
+        <Link to={`/plants/${match.params.id}`}>add or remove plants from this garden</ Link>
 
         <Fragment>
           <CardDeck className="mb-4">
@@ -166,17 +166,7 @@ const GardenPlot = ({ user, alerts, match }) => {
           </CardDeck>
         </Fragment>
 
-        <h2>{gardenPlot.plant.plantName}</h2>
-        <Link to={`/plants/${match.params.id}`}>add plants</ Link>
-        <br />
-        <Link to={`/garden-plots/${match.params.id}/update`}>
-          <Button variant="warning">Edit</Button>
-        </Link>
-        <Link to={`/garden-plots/${match.params.id}/delete`}>
-          <Button className="ml-2" variant="warning">Delete</Button>
-        </Link>
-        <br />
-        <Link to={'/garden-plots/'}>back</Link>
+        <Link to={`/garden-plots/${match.params.id}/update`}>edit garden name</Link> • <Link to={`/garden-plots/${match.params.id}/delete`}>delete this garden</Link> • <Link to={'/garden-plots/'}>back</Link>
       </div>
 
     )

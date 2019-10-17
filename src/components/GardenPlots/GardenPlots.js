@@ -19,9 +19,9 @@ const GardenPlots = ({ user, alerts }) => {
   }, [])
 
   const gardenPlotsJsx = gardenPlots.map(gardenPlot => (
-    <li key={gardenPlot._id}>
+    <h5 key={gardenPlot._id}>
       <Link to={`/garden-plots/${gardenPlot._id}`}>{gardenPlot.name}</Link>
-    </li>
+    </h5>
   ))
 
   if (gardenPlots.length === 0) {
@@ -36,7 +36,8 @@ const GardenPlots = ({ user, alerts }) => {
   } else {
     return (
       <div>
-        <h1>Your Garden Plots</h1>
+        <h1>your garden plots</h1>
+        <br />
         {gardenPlotsJsx}
       </div>
 

@@ -48,14 +48,14 @@ const Plants = ({ user, alert, match, history }) => {
 
     setPlants(combinedTrueFalseArray)
 
-    const tempArray = [...plants].filter(function (plant) {
-      if (currentGardenPlants.filter(plant.plantName)) {
-        plant.checked = 'TRUE'
-        return plant
-      } else {
-        return plant
-      }
-    })
+    // const tempArray = [...plants].filter(function (plant) {
+    //   if (currentGardenPlants.filter(plant.plantName)) {
+    //     plant.checked = 'TRUE'
+    //     return plant
+    //   } else {
+    //     return plant
+    //   }
+    // })
   }, [currentGardenPlants], [plants])
 
   const handleChange = (event) => {
