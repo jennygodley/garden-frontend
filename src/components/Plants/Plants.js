@@ -47,6 +47,15 @@ const Plants = ({ user, alert, match, history }) => {
     const combinedTrueFalseArray = Object.values(combinedArray.reduce((acc, cur) => Object.assign(acc, { [cur._id]: cur }), {}))
 
     setPlants(combinedTrueFalseArray)
+
+    const tempArray = [...plants].filter(function (plant) {
+      if (currentGardenPlants.filter(plant.plantName)) {
+        plant.checked = 'TRUE'
+        return plant
+      } else {
+        return plant
+      }
+    })
   }, [currentGardenPlants], [plants])
 
   const handleChange = (event) => {
