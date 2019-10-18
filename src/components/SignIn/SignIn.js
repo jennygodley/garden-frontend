@@ -53,14 +53,14 @@ class SignIn extends Component {
           <h3>Sign In</h3>
           <Form onSubmit={this.onSignIn}>
             <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>Username</Form.Label>
               <Form.Control
                 required
                 autoComplete="off"
                 type="text"
                 name="email"
                 value={email}
-                placeholder="Enter email"
+                placeholder="Enter username"
                 onChange={this.handleChange}
               />
             </Form.Group>
