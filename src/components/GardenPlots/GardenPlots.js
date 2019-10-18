@@ -39,6 +39,8 @@ const GardenPlots = ({ user, alerts }) => {
         <h1>your garden plots</h1>
         <br />
         {gardenPlotsJsx}
+        <br />
+        <Link to={'/garden-plots-create'}>create new garden</ Link>
       </div>
 
     )
